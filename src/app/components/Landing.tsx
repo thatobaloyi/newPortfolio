@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Socials from "./Socials"
+
 export default function Landing() {
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-center p-6">
@@ -30,6 +31,8 @@ export default function Landing() {
             </p>
             <br />
             <Socials />
+            {/* <button>Resume</button> */}
+
         </div>
     )
 }

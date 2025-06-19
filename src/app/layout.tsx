@@ -32,9 +32,7 @@ export default function RootLayout({
       >
         <Header/>
         {/* <Landing/> */}
-        <main className="m-10 md:m-50">
         {children}
-        </main>
         <Footer/>
       </body>
     </html>

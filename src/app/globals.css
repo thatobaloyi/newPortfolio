@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+
+body{
+  background-color: #F9F9F9;
+  color: #363636;
+}
+
+main{
+  margin-left: 50;
+  margin-right: 50;
+}
+
+nav{
+  margin-left: 50;
+  padding: 30 0
+}
+
+h1{
+  font-weight: bold;
+  font-size: x-large;
+  padding: 0.5em 0;
+}
+

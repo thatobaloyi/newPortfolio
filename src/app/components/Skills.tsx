@@ -3,7 +3,7 @@
 
 export default function Skills() {
   return (
-    <div>
+    <div className="shadow rounded-xl p-10">
       <h1>Skills</h1>
     </div>
   )

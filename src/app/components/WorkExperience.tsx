@@ -17,7 +17,7 @@ export default function WorkExperience() {
     duration:"2020-3023"
   }]
   return (
-    <div>
+    <div className="shadow rounded-xl p-10">
       <h1>Work Expericence</h1>
       {data.map((experience) => (
         <WorkExperienceCard key={experience.position} workExperience={experience}/>

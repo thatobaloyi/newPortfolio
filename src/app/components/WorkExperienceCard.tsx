@@ -7,7 +7,7 @@ interface WorkExperienceCardProps {
 
 export default function WorkExperienceCard({workExperience} : WorkExperienceCardProps) {
   return (
-    <div>
+    <div >
         <h5 className="text-lg font-bold">{workExperience.position}</h5>
         <p>{workExperience.description}</p>
         <ul>

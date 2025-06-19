@@ -8,10 +8,13 @@ export default function Home() {
     <>
       {/* <Landing/> */}
       <AboutMe/>
+      <br />
       {/* <hr /> */}
       <Skills/>
+      <br />
       {/* <hr /> */}
       <WorkExperience/>
+      <br />
       {/* <hr /> */}
       <Education/>
     </>

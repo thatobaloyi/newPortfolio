@@ -11,7 +11,7 @@ export default function Education() {
   ]
 
   return (
-    <div>
+    <div className="shadow rounded-xl p-10">
       <h1>Education</h1>
       {data.map((education) => (
         <EducationCard key={education.institution} education={education} />

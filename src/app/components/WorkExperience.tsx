@@ -18,7 +18,7 @@ export default function WorkExperience() {
   }]
   return (
     <div>
-      <h1>/ Work Expericence</h1>
+      <h1>Work Expericence</h1>
       {data.map((experience) => (
         <WorkExperienceCard key={experience.position} workExperience={experience}/>
       ))}

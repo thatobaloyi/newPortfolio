@@ -11,7 +11,7 @@ body{
 }
 
 main{
-  padding-top: 120;
+  padding-top: 30px;
   margin: 0 100;
 }
 
@@ -26,6 +26,7 @@ hr{
 }
 
 h1{
+  text-align: center;
   font-weight: bold;
   font-size: x-large;
   padding: 0.5em 0;

@@ -4,15 +4,12 @@
 body{
   background-color: #F9F9F9;
   color: #363636;
+  margin: 0;
+  padding: 0;
 }
 
 .backdrop{
   backdrop-filter: blur(3px);
-}
-
-main{
-  padding-top: 30px;
-  margin: 0 100;
 }
 
 nav{

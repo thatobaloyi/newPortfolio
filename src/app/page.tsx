@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Landing />
-      <main className="m-10 md:m-50">
+      <main className="m-10 md:m-35 pb-30">
         <AboutMe />
         <br />
         {/* <hr /> */}

@@ -1,7 +1,9 @@
 import Image from "next/image"
 import Socials from "./Socials"
+import prisma from "../../../lib/prisma"
 
-export default function Landing() {
+export default async function Landing() {
+    const data = await prisma.landing.findMany()
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-center p-6">
             <div className="relative w-40 h-40 rounded-full mb-8 -z-10">
@@ -15,19 +17,17 @@ export default function Landing() {
             </div>
             {/* Name */}
             <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center">
-                Thato Baloyi
+                {data[0].name}
             </h1>
 
             {/* Title/Role */}
             <p className="text-xl md:text-2xl text-gray-400 mb-4 text-center">
-                Full Stack Developer | Aspiring IT Technician
+                {data[0].position}
             </p>
 
             {/* Bio/Description */}
             <p className="text-base text-gray-400 max-w-md text-center">
-                A 3rd-year Computer Science and Information Systems student at Rhodes University,
-                I bring practical experience as a Full Stack Developer, a Computer Science Tutor,
-                and a Lecture Venue Technician. Passionate about building and supporting tech solutions.
+                {data[0].description}
             </p>
             <br />
             <Socials />

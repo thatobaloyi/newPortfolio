@@ -1,0 +1,59 @@
+// prisma/schema.prisma
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  // The DATABASE_URL environment variable will hold your MongoDB connection string.
+  // Example: mongodb+srv://<username>:<password>@<cluster-url>/<database-name>?retryWrites=true&w=majority
+  url      = env("DATABASE_URL")
+}
+
+// Model for "About Me" and "Skills" information.
+// It's common to have a single document for these if they're static content.
+model AboutMe {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId // MongoDB's _id
+  aboutMe   String // Text for "about me" section
+  skills    String[] // Array of strings for skills (e.g., ["React", "Next.js", "MongoDB"])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Model for Work Experience entries
+model WorkExperience {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  position    String // e.g., "Software Engineer"
+  duration    String // e.g., "Jan 2020 - Dec 2023" or "3 Years"
+  description String // Detailed description of responsibilities/achievements
+  skills      String[] // Skills used in this specific work experience
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Model for Education entries
+model Education {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  title       String // e.g., "Bachelor of Science in Computer Science"
+  institution String // e.g., "University of XYZ"
+  duration    String // e.g., "Sep 2016 - May 2020"
+  description String? // Description of coursework, achievements, etc.
+  keyCoursework String[]
+  // An array of strings for achievements, optional
+  achievements  String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Landing {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  position    String 
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

@@ -1,10 +1,23 @@
-// footer component -> showing for each page on the website.
-import Socials from "./Socials"
+// components/Footer.tsx
+
+import Socials from "./Socials"; // Make sure the path is correct
+
 export default function Footer() {
+  const currentYear = new Date().getFullYear(); // Get current year dynamically
+
   return (
-    <div className="text-center p-5 absolute bottom-0 w-full">
-        <p>&copy; Thato Baloyi { new Date().getFullYear()}</p>
-        <Socials/>
-    </div>
-  )
+    // Added common footer styling:
+    // bg-gray-800: Dark background
+    // text-white: White text
+    // p-6: More generous padding
+    // mt-auto: This is crucial for a flexbox sticky footer (explained below)
+    <footer className="bg-gray-800 text-white p-6 text-center mt-auto">
+      <div className="container mx-auto"> {/* Optional: Center content and limit width */}
+        <p className="mb-4"> {/* Added margin-bottom to separate from socials */}
+          &copy; Thato Baloyi {currentYear}
+        </p>
+        <Socials />
+      </div>
+    </footer>
+  );
 }

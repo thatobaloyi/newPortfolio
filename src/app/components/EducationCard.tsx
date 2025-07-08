@@ -14,7 +14,7 @@ export default function EducationCard({ education }: EducationCardProps) {
       <h5 className="text-lg font-bold text-gray-900 mb-1">{education.title}</h5>
 
       {/* Institution Name */}
-      <p className="text-md text-gray-700">{education.institution}</p>
+      <p className="text-sm text-gray-800">{education.institution}</p>
 
       {/* Duration/Graduation */}
       <p className="text-gray-500 text-sm mb-4">{education.duration}</p> {/* Added margin-bottom */}

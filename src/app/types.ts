@@ -22,9 +22,10 @@ export interface AboutMe {
  */
 export interface WorkExperience {
   id: string; // MongoDB's _id, represented as a string
+  company: string
   position: string; // e.g., "Software Engineer"
   duration: string; // e.g., "Jan 2020 - Dec 2023"
-  description: string; // Detailed description of responsibilities/achievements
+  description: string[]; // Detailed description of responsibilities/achievements
   skills: string[]; // Skills used in this specific work experience
   createdAt: Date; // Timestamp for creation
   updatedAt: Date; // Timestamp for last update
@@ -48,5 +49,13 @@ export interface Education {
   // relevantProjects?: { title: string; link: string; }[];
 }
 
+// types/index.ts or app/components/types.ts
+
+export interface Skill {
+  _id: string; // MongoDB's default ID
+  name: string;
+  icon: string; // This will be the string representation of the icon (e.g., "fa-brands fa-js")
+}
+
 // You can also create a union type if you ever need to refer to any of these broadly
-export type PortfolioItem = AboutMe | WorkExperience | Education;
+export type PortfolioItem = AboutMe | WorkExperience | Education | Skill;

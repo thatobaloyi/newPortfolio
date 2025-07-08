@@ -27,9 +27,10 @@ model AboutMe {
 // Model for Work Experience entries
 model WorkExperience {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  company     String
   position    String // e.g., "Software Engineer"
   duration    String // e.g., "Jan 2020 - Dec 2023" or "3 Years"
-  description String // Detailed description of responsibilities/achievements
+  description String[] // Detailed description of responsibilities/achievements
   skills      String[] // Skills used in this specific work experience
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -56,4 +57,10 @@ model Landing {
   description String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model Skill {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  name  String @unique // Ensure skill names are unique
+  icon  String
 }

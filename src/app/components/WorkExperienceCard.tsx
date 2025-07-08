@@ -16,9 +16,12 @@ export default function WorkExperienceCard({
       <h5 className="text-lg font-bold">{workExperience.position}</h5>
       {/* Optional: Add Company Name if your type includes it */}
       {/* <p className="text-gray-600">{workExperience.company}</p> */}
+      <p className="text-gray-800 text-sm">{workExperience.company}</p> {/* Added margin-bottom */}
       <p className="text-gray-500 text-sm mb-3">{workExperience.duration}</p> {/* Added margin-bottom */}
 
-      <p className="text-gray-700 mb-4 leading-relaxedg  ">{workExperience.description}</p> {/* Added margin-bottom & line-height */}
+      <ul className="list-disc list-inside text-gray-700 mb-4 leading-relaxedg  ">
+        {workExperience.description && workExperience.description.map((description, index)=>(<li key={index}>{description}</li>))}
+      </ul> {/* Added margin-bottom & line-height */}
 
       {workExperience.skills && workExperience.skills.length > 0 && ( // Only render if skills exist
         <>

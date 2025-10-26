@@ -7,7 +7,7 @@ export default function Socials() {
     return (
         <div className="flex gap-2 justify-center -z-10">
             {data.map((link) => (
-                <SocialIcon key={link} url={link} style={{ height: 25, width: 25 }} bgColor="#363636" />
+                <SocialIcon key={link} url={link} style={{ height: 30, width: 30 }} bgColor="#363636" />
             ))}
         </div>
     )

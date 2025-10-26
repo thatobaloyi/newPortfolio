@@ -19,7 +19,7 @@ export default function WorkExperienceCard({
       <p className="text-gray-800 text-sm">{workExperience.company}</p> {/* Added margin-bottom */}
       <p className="text-gray-500 text-sm mb-3">{workExperience.duration}</p> {/* Added margin-bottom */}
 
-      <ul className="list-disc list-inside text-gray-700 mb-4 leading-relaxedg  ">
+      <ul className="list-disc list-inside text-gray-700 mb-4 leading-relaxedg">
         {workExperience.description && workExperience.description.map((description, index)=>(<li key={index}>{description}</li>))}
       </ul> {/* Added margin-bottom & line-height */}
 

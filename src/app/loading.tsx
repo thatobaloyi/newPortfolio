@@ -2,6 +2,19 @@ import React from 'react'
 
 export default function loading() {
   return (
-    <div className='mt-40 text-center mb-20'>Loading....</div>
+    <div className="spinner center">
+      <div className="spinner-blade"></div>
+      <div className="spinner-blade"></div>
+      <div className="spinner-blade"></div>
+      <div className="spinner-blade"></div>
+      <div className="spinner-blade"></div>
+      <div className="spinner-blade"></div>
+      <div className="spinner-blade"></div>
+      <div className="spinner-blade"></div>
+      <div className="spinner-blade"></div>
+      <div className="spinner-blade"></div>
+      <div className="spinner-blade"></div>
+      <div className="spinner-blade"></div>
+    </div>
   )
 }

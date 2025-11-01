@@ -19,7 +19,7 @@ export default async function Landing() {
                 />
             </div>
 
-           
+
             {/* Name */}
             <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center">
                 {data[0].name}
@@ -37,15 +37,30 @@ export default async function Landing() {
             <br />
             <Socials />
 
-            <div className="mt-10">
-                <a 
-                    href={`mailto:${email}`}
-                    className="px-6 py-3 text-lg font-semibold rounded-lg bg-neutral-200 text-neutral-900 hover:bg-neutral-300 transition-colors shadow-lg"
-                    aria-label={`Get in touch with ${data[0].name} via email`}
-                >
-                    Get in Touch
-                </a>
+
+            <div className="flex justify-center gap-5">
+                <div className="mt-10">
+                    <a
+                        href={`mailto:${email}`}
+                        className="px-6 py-3 text-lg font-semibold rounded-lg bg-neutral-200 text-neutral-900 hover:bg-neutral-300 transition-colors shadow-lg"
+                        aria-label={`Get in touch with ${data[0].name} via email`}
+                    >
+                        📧 Get in Touch
+                    </a>
+                </div>
+
+                <div className="mt-10">
+                    <a
+                        href='/files/resume.pdf'
+                        className="px-6 py-3 text-lg font-semibold rounded-lg bg-neutral-900 text-neutral-200 hover:bg-neutral-300 transition-colors shadow-lg"
+                        target="_blank"
+                        aria-label={`Get in touch with ${data[0].name} via email`}
+                    >
+                        📄 Resume
+                    </a>
+                </div>
             </div>
+
             <img src="https://cdn-icons-png.flaticon.com/128/15712/15712478.png" alt="" width={60} className="m-10" />
             {/* <button>Resume</button> */}
 

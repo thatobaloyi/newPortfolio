@@ -61,7 +61,7 @@ export default async function Landing() {
                 </div>
             </div>
 
-            <img src="https://cdn-icons-png.flaticon.com/128/15712/15712478.png" alt="" width={60} className="m-10" />
+            <Image src="https://cdn-icons-png.flaticon.com/128/15712/15712478.png" alt="" width={60} height={60} className="m-10" />
             {/* <button>Resume</button> */}
 
         </div>

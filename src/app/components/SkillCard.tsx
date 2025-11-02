@@ -3,7 +3,7 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // Import specific icons you need
-import { faJs, faPython, faJava, faGitAlt, faReact, faNodeJs, faHtml5, faCss3Alt, faPhp } from '@fortawesome/free-brands-svg-icons';
+import { faJs, faPython, faJava, faGitAlt, faReact, faNodeJs, faHtml5, faCss3Alt, faPhp, faGithub, faMicrosoft } from '@fortawesome/free-brands-svg-icons';
 import { faDatabase, faFileCode, faN } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
@@ -25,6 +25,8 @@ const iconMap: { [key: string]: IconDefinition } = {
   "fa-brands fa-html5": faHtml5,
   "fa-brands fa-css3-alt": faCss3Alt,
   "fa-brands fa-php": faPhp,
+  "github": faGithub,
+  "Microsoft": faMicrosoft,
 };
 
 export default function SkillCard({ name, icon }: SkillCardProps) {

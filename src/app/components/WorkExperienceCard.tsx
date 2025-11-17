@@ -10,8 +10,6 @@ export default function WorkExperienceCard({
   workExperience,
 }: WorkExperienceCardProps) {
   return (
-    // You might want to wrap this in a parent div with some padding/margin,
-    // like the card in your screenshot.
     <div className="bg-white p-6 rounded-lg shadow-md mb-6"> {/* Example card styling */}
       <h5 className="text-lg font-bold">{workExperience.position}</h5>
       {/* Optional: Add Company Name if your type includes it */}

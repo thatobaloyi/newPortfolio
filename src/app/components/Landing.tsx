@@ -9,7 +9,7 @@ export default async function Landing() {
     const email = 'thato2313321@gmail.com'
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-center p-6 pt-30" id="landing">
-
+            
             <div className="relative w-40 h-40 rounded-full mb-8">
                 <Image
                     src="https://media.licdn.com/dms/image/v2/D4D03AQHF5kgAU0Ki7A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1731797429204?e=1755734400&v=beta&t=hhOx7Wo_Jljc8RsmG0GnNI0j_9KctENe7jWZwe1vPbI"
@@ -22,17 +22,17 @@ export default async function Landing() {
 
 
             {/* Name */}
-            <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center text-neutral-100">
+            <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center">
                 {data[0].name}
             </h1>
 
             {/* Title/Role */}
-            <p className="text-xl md:text-2xl  mb-4 text-center text-neutral-100">
+            <p className="text-xl md:text-2xl  mb-4 text-center">
                 {data[0].position}
             </p>
 
             {/* Bio/Description */}
-            <p className="text-base  max-w-md text-center text-neutral-100">
+            <p className="text-base  max-w-md text-center">
                 {data[0].description}
             </p>
             <br />

@@ -64,3 +64,30 @@ model Skill {
   name  String @unique // Ensure skill names are unique
   icon  String
 }
+
+
+model Post {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId // MongoDB's _id
+  
+  // Core Content
+  title           String    @unique // Blog post title (should be unique)
+  slug            String    @unique // URL-friendly slug (e.g., "my-first-blog-post")
+  content         String    // The main body/text of the blog post (e.g., Markdown or HTML)
+  summary         String?   // A short description for previews
+  
+  // Media & Metadata
+  postImage       String?   // URL or path to the main image
+  tags            String[]  // Array of strings for categories/tags (e.g., ["JavaScript", "Next.js", "MongoDB"])
+  
+  // Author & Relations (Optional, but good practice)
+  author          String    // The name of the author (you)
+  // If you had a separate User/Author model, you'd use a relation here:
+  // authorId      String    @db.ObjectId
+  // author        User      @relation(fields: [authorId], references: [id])
+  
+  // Timestamps
+  publishedAt     DateTime  // The date the post was first published
+  createdAt       DateTime  @default(now()) // When the record was created in the DB
+  updatedAt       DateTime  @updatedAt      // When the record was last modified
+}
+

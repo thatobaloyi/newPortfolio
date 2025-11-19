@@ -23,6 +23,9 @@ async function page() {
         <PageWrapper>
             <main className='mt-30 max-w-5xl mx-auto px-4'>
                 <h1 className='text-4xl font-extrabold text-gray-900 mb-8'>Blog Posts</h1>
+                <Link href='/blog/admin'>
+                    <img className='mx-auto' src="https://cdn-icons-png.flaticon.com/128/12724/12724606.png" alt="admin" width={30}/>
+                </Link>
                 <br />
                 <h2 className="text-2xl font-semibold mt-10 mb-6 border-b pb-2 text-center text-gray-700">Current Posts ({posts.length})</h2>
 

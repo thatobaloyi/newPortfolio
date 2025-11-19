@@ -1,46 +1,35 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Post as PrismaPostType } from "@prisma/client";
 import { PostForm } from './PostForm'; 
 import { AdminPostList } from './AdminPostList';
 import { AdminLogin } from './AdminLogin';
 
-// Must match the key in AdminLogin.tsx
-const SESSION_STORAGE_KEY = 'admin_session_token';
+// Import NextAuth hooks
+import { useSession, signOut } from 'next-auth/react'; 
+
 
 interface AdminProtectedProps {
     posts: PrismaPostType[]; // The posts array passed from the Server Component
 }
 
 export function AdminProtected({ posts }: AdminProtectedProps) {
-    // Check localStorage once on the client side
-    const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-
-    useEffect(() => {
-        try {
-            // Check for the session token in local storage
-            const sessionToken = localStorage.getItem(SESSION_STORAGE_KEY);
-            setIsAuthenticated(sessionToken === 'authenticated');
-        } catch (e) {
-            // Handle cases where localStorage might be unavailable
-            console.error("Could not access localStorage:", e);
-            setIsAuthenticated(false);
-        }
-    }, []);
+    // Use the next-auth hook to get session status
+    const { data: session, status } = useSession();
+    
+    // Status can be 'loading', 'authenticated', or 'unauthenticated'
+    const isAuthenticated = status === 'authenticated';
+    const isLoading = status === 'loading';
 
     const handleLogout = () => {
-        try {
-            localStorage.removeItem(SESSION_STORAGE_KEY);
-        } catch (e) {
-            console.error("Logout failed:", e);
-        }
-        setIsAuthenticated(false);
+        // NextAuth function to securely log out
+        signOut({ redirect: false }); 
     };
 
     const renderDashboard = () => (
-        <div className='mb-20 mt-30'>
-            <div className="flex justify-between items-center mb-8 border-b pb-4">
+        <>
+            <div className="flex justify-between items-center mb-8 mt-30 border-b pb-4">
                 <h1 className='text-4xl font-extrabold text-gray-900'>
                     Blog Administration Dashboard
                 </h1>
@@ -60,16 +49,15 @@ export function AdminProtected({ posts }: AdminProtectedProps) {
             <h2 className="text-2xl font-semibold text-gray-700 mt-12 mb-4 border-b pb-2">
                 Manage Existing Posts ({posts.length})
             </h2>
-            {/* The posts prop is correctly passed to AdminPostList */}
             <AdminPostList posts={posts} /> 
-        </div>
+        </>
     );
 
-    if (isAuthenticated === null) {
-        // Loading state while checking localStorage (prevents flicker)
+    if (isLoading) {
+        // Loading state while checking session
         return (
             <div className="flex items-center justify-center h-48">
-                <p className="text-gray-500 animate-pulse">Checking authentication status...</p>
+                <p className="text-gray-500 animate-spin">Checking authentication status...</p>
             </div>
         );
     }
@@ -79,7 +67,8 @@ export function AdminProtected({ posts }: AdminProtectedProps) {
             {isAuthenticated ? (
                 renderDashboard()
             ) : (
-                <AdminLogin onLoginSuccess={() => setIsAuthenticated(true)} />
+                // We no longer need to pass onLoginSuccess, as signIn handles the session update
+                <AdminLogin /> 
             )}
         </div>
     );

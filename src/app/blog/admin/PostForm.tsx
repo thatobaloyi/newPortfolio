@@ -1,6 +1,7 @@
 'use client'; 
 import { useState } from 'react';
 import { createPost } from './actions'; // Import the Server Action
+import { useSession } from 'next-auth/react';
 
 // Define the complete set of data fields the form will collect
 interface PostFormData {
@@ -10,11 +11,14 @@ interface PostFormData {
   summary: string;
   postImage: string;
   tags: string; // Collecting as a comma-separated string
-  author: string;
+  author: string ;
   publishedAt: string; // Collecting as a date string
 }
 
 export function PostForm() {
+  const {data: session, status} = useSession();
+
+  const authorName = session?.user?.name || "";
   // State for all required and optional fields
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
@@ -22,7 +26,7 @@ export function PostForm() {
   const [summary, setSummary] = useState('');
   const [postImage, setPostImage] = useState('');
   const [tags, setTags] = useState('');
-  const [author, setAuthor] = useState('');
+  const [author, setAuthor] = useState(session?.user?.name);
   const [publishedAt, setPublishedAt] = useState(new Date().toISOString().substring(0, 10)); // Default to today
 
   const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +46,7 @@ export function PostForm() {
         content,
         summary: summary || null, // Pass null if empty for optional fields
         postImage: postImage || null,
-        author: author,
+        author: authorName,
         // Convert comma-separated string to array
         tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0), 
         // Convert ISO date string to Date object
@@ -59,7 +63,6 @@ export function PostForm() {
       setSummary('');
       setPostImage('');
       setTags('');
-      setAuthor('');
       setPublishedAt(new Date().toISOString().substring(0, 10)); // Reset date to today
 
     } catch (e) {
@@ -155,10 +158,9 @@ export function PostForm() {
         <input
           type="text"
           placeholder="Author Name (Required)"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
+          value={authorName}
           className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"
-          disabled={isLoading}
+          disabled={true}
           required
         />
 

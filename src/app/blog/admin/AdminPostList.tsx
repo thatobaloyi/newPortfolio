@@ -73,7 +73,7 @@ export function AdminPostList({ posts }: AdminPostListProps) {
 
     // --- 2. Display Post List (Default View) ---
     return (
-        <div className="mt-8 overflow-x-auto shadow-xl rounded-lg bg-white">
+        <div className="mt-8 mb-20 overflow-x-auto shadow-xl rounded-lg bg-white">
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                     <tr>

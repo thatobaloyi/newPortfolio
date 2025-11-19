@@ -53,7 +53,7 @@ export default async function Landing() {
                 <div className="mt-10">
                     <a
                         href='/files/resume.pdf'
-                        className="px-6 py-3 text-lg font-semibold rounded-lg bg-neutral-900 text-neutral-200 hover:bg-neutral-300 transition-colors shadow-lg"
+                        className="px-6 py-3 text-lg font-semibold rounded-lg bg-neutral-900 text-neutral-200 hover:bg-neutral-300 hover:text-neutral-900 transition-colors shadow-lg"
                         target="_blank"
                         aria-label={`Get in touch with ${data[0].name} via email`}
                     >

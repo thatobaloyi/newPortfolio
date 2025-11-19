@@ -1,0 +1,7 @@
+import NextAuth from "next-auth";
+import { authOptions } from '../../../../../lib/authOptions'; // Import the centralized config
+
+// The NextAuth handler now just uses the imported configuration object.
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };

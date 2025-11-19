@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { updatePost } from "./actions" // Corrected import path
 import { useRouter } from 'next/navigation';
 
-
 // Define the data structure needed for state initialization and update
 interface PostEditData {
   id: string;
@@ -161,9 +160,9 @@ export function EditPostForm({ post, onCancel }: EditPostFormProps) {
           type="text"
           placeholder="Author Name (Required)"
           value={author}
-          onChange={(e) => setAuthor(e.target.value)}
+          
           className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"
-          disabled={isLoading}
+          disabled={true}
           required
         />
 

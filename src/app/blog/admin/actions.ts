@@ -2,6 +2,11 @@
 
 import prisma from '../../../../lib/prisma';
 import { revalidatePath } from 'next/cache';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../../../../lib/authOptions';
+
+
+
 
 // Update the interface to include ALL fields passed from the form
 interface PostCreateData {
@@ -20,9 +25,6 @@ interface PostUpdateData extends PostCreateData {
 }
 
 export async function createPost(formData: PostCreateData) {
-  
- 
-  
   try {
     await prisma.post.create({
       data: {
@@ -52,10 +54,14 @@ export async function createPost(formData: PostCreateData) {
 
 
 export async function updatePost(formData: PostUpdateData) {
+
+  const session = await getServerSession(authOptions);
+
     try {
         await prisma.post.update({
             where: {
                 id: formData.id,
+                author: session?.user.name
             },
             data: {
                 title: formData.title,
@@ -85,7 +91,9 @@ export async function updatePost(formData: PostUpdateData) {
 export async function deletePost(postId: string) {
     try {
         // Find the post first to get its slug for targeted revalidation
-        const post = await prisma.post.findUnique({ where: { id: postId } });
+        const session = await getServerSession(authOptions);
+
+        const post = await prisma.post.findUnique({ where: { id: postId, author: session?.user.name } });
 
         if (post) {
             await prisma.post.delete({

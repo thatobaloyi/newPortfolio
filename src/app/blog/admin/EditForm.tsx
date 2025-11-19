@@ -66,7 +66,7 @@ export function EditPostForm({ post, onCancel }: EditPostFormProps) {
 
       // If the slug changed, we need to redirect the user
       if (post.slug !== dataToUpdate.slug) {
-          router.push(`/posts/${dataToUpdate.slug}`);
+          router.push(`/blog/${dataToUpdate.slug}`);
       } else {
           router.refresh(); // Refresh the current page to show new data
       }

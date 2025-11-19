@@ -1,5 +1,5 @@
 // about me component
-import prisma from "../../../lib/prisma"
+import prisma from "../../lib/prisma"
 
 export default async function AboutMe() {
     const aboutmeInfo = await prisma.aboutMe.findMany()

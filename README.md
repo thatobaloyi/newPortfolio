@@ -24,7 +24,7 @@ Make sure you have Node.js and npm (or yarn/pnpm) installed on your machine.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username/thato-portfolio.git
+   git clone https://github.com/thatobaloyi/newPortfolio.git
    ```
 2. Install NPM packages
    ```sh

@@ -1,6 +1,6 @@
 'use server'; 
 
-import prisma from '../../../lib/prisma';
+import prisma from '../../../../lib/prisma';
 import { revalidatePath } from 'next/cache';
 
 // Update the interface to include ALL fields passed from the form
@@ -71,11 +71,35 @@ export async function updatePost(formData: PostUpdateData) {
         });
 
         // Revalidate the main post list page and the single post page
-        revalidatePath('/posts');
-        revalidatePath(`/posts/${formData.slug}`);
+        revalidatePath('/blog');
+        revalidatePath(`/blog/${formData.slug}`);
 
     } catch (error) {
         console.error("Error updating post:", error);
         throw new Error("Failed to update post due to database or validation error.");
+    }
+}
+
+
+
+export async function deletePost(postId: string) {
+    try {
+        // Find the post first to get its slug for targeted revalidation
+        const post = await prisma.post.findUnique({ where: { id: postId } });
+
+        if (post) {
+            await prisma.post.delete({
+                where: { id: postId },
+            });
+            
+            // Revalidate all affected pages
+            revalidatePath('/blog');
+            revalidatePath('/admin');
+            revalidatePath(`/blog/${post.slug}`);
+        }
+
+    } catch (error) {
+        console.error("Error deleting post:", error);
+        throw new Error("Failed to delete post.");
     }
 }

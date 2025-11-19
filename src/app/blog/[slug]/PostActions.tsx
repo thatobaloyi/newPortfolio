@@ -1,12 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Post as PrismaPostType } from "@prisma/client";
-import { EditPostForm } from '../EditForm'; 
+// Removed import: import { EditPostForm } from './EditPostForm'; 
 
 interface PostActionsProps {
     post: PrismaPostType;
-    // Removed: formatDate: (date: Date) => string;
 }
 
 // Helper function moved to the client side
@@ -17,44 +16,12 @@ const formatDate = (date: Date) => new Date(date).toLocaleDateString('en-US', {
 });
 
 export function PostActions({ post }: PostActionsProps) {
-    const [isEditing, setIsEditing] = useState(false);
-
-    // Prepare data structure needed by EditPostForm
-    const postDataForEdit = {
-        id: post.id,
-        title: post.title,
-        slug: post.slug,
-        content: post.content,
-        summary: post.summary,
-        postImage: post.postImage,
-        tags: post.tags,
-        author: post.author,
-        publishedAt: post.publishedAt, 
-    };
-
-    if (isEditing) {
-        return (
-            <div className="max-w-4xl mx-auto py-12 px-4">
-                <EditPostForm 
-                    post={postDataForEdit} 
-                    onCancel={() => setIsEditing(false)} 
-                />
-            </div>
-        );
-    }
+    // Removed: const [isEditing, setIsEditing] = useState(false); and related logic.
 
     return (
-        <main className="max-w-4xl mx-auto py-12 px-4 bg-white rounded-xl shadow-2xl mt-30 mb-30">
+        <main className="max-w-4xl mx-auto py-12 px-4 bg-white rounded-xl shadow-2xl mt-30 mb-20">
         
-            {/* Edit Button */}
-            <div className='flex justify-end mb-4'>
-                <button
-                    onClick={() => setIsEditing(true)}
-                    className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200"
-                >
-                    Edit Post
-                </button>
-            </div>
+            {/* Removed: Edit Button, making this a pure public viewing component. */}
 
             {/* Post Image (if available) */}
             {post.postImage && (

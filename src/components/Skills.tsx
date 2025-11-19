@@ -1,7 +1,7 @@
 // list of skills. -> each being a skill card
 // server
 import SkillCard from "./SkillCard";
-import prisma from "../../../lib/prisma"
+import prisma from "../../lib/prisma"
 
 export default async function Skills() {
 

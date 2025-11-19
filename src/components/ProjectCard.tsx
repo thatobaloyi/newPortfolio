@@ -9,13 +9,13 @@ interface ProjectCardProps {
 
 function ProjectCard({ name, description, html_url, language }: ProjectCardProps) {
   return (
-    <div className="flex flex-col p-4 bg-gray-100 justify-center items-center gap-5 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+    <div className="flex flex-col p-6 bg-gray-100 justify-center h-full items-center gap-5 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-200">
 
       <Image src={`/images/${name}.png`} alt="" width={500} height={500}
         className="rounded-md mb-4" />
       {/* Name, with URL Link */}
-      <h5 className="text-lg font-medium text-gray-800 hover:text-gray-400 hover:text-xl transition-all duration-500">
-        <a href={html_url} target="_blank">{name}</a>
+      <h5 className="text-lg font-medium text-gray-800">
+       {name}
       </h5>
 
       {/* Description */}

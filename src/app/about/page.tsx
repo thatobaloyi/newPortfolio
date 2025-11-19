@@ -1,9 +1,9 @@
 import React from 'react'
-import AboutMe from '../components/AboutMe'
-import Skills from '../components/Skills'
-import WorkExperience from '../components/WorkExperience'
-import Education from '../components/Education'
-import PageWrapper from '../components/PageWrapper'
+import AboutMe from '../../components/AboutMe'
+import Skills from '../../components/Skills'
+import WorkExperience from '../../components/WorkExperience'
+import Education from '../../components/Education'
+import PageWrapper from '../../components/PageWrapper'
 
 function page() {
     return (

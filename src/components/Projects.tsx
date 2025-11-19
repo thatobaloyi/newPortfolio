@@ -37,8 +37,10 @@ async function Projects() {
             <div className="bg-white p-6 rounded-lg shadow-md mb-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {projects.map((project: GithubRepo) => (
-                        <ProjectCard key={project.id} name={project.name} description={project.description} html_url={project.html_url}
-                            language={project.language} />
+                        <a key={project.id} href={project.html_url} className="transition-all duration-500" target="_blank">
+                            <ProjectCard  name={project.name} description={project.description} html_url={project.html_url}
+                                language={project.language} />
+                        </a>
                     ))}
                 </div>
             </div>

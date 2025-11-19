@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link'; // Import Link for navigation
-import PageWrapper from '../components/PageWrapper';
-import { PostForm } from './PostForm';
+import PageWrapper from '../../components/PageWrapper';
+import { PostForm } from './admin/PostForm';
 import prisma from '../../../lib/prisma';
 import { Post as PrismaPostType }  from "@prisma/client";
 
@@ -24,9 +24,6 @@ async function page() {
             <main className='mt-30 max-w-5xl mx-auto px-4'>
                 <h1 className='text-4xl font-extrabold text-gray-900 mb-8'>Blog Posts</h1>
                 <br />
-                {/* Post Creation Form */}
-                <PostForm />
-
                 <h2 className="text-2xl font-semibold mt-10 mb-6 border-b pb-2 text-center text-gray-700">Current Posts ({posts.length})</h2>
 
                 {/* Post Grid (Displays as Cards) */}

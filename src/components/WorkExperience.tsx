@@ -3,7 +3,7 @@
 
 import WorkExperienceCard from "./WorkExperienceCard"
 
-import prisma from "../../../lib/prisma";
+import prisma from "../../lib/prisma";
 
 export default async function WorkExperience() {
   // will get this data from the database

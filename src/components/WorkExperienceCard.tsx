@@ -1,6 +1,6 @@
 // components/WorkExperienceCard.tsx (or wherever your component is located)
 
-import { WorkExperience } from "../types"; // Make sure this path is correct
+import { WorkExperience } from "../app/types"; // Make sure this path is correct
 
 interface WorkExperienceCardProps {
   workExperience: WorkExperience;

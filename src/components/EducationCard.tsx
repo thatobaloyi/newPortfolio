@@ -1,14 +1,16 @@
 // components/EducationCard.tsx
 
-import { Education } from "../types"; // Ensure this path is correct
+// import { Education } from "../app/types"; // Ensure this path is correct
+import { Education as PrismaEducationType } from "@prisma/client";
 
 interface EducationCardProps {
-  education: Education;
+    education: PrismaEducationType;
 }
 
-export default function EducationCard({ education }: EducationCardProps) {
+
+export default function EducationCard( {education} : EducationCardProps) {
   return (
-    // Outer card container with basic styling for a clean look
+    // Outer card container with basic styling for a clean look1
     <div className="bg-white p-6 rounded-lg shadow-md mb-6">
       {/* Title of Degree/Qualification */}
       <h5 className="text-lg font-bold text-gray-900 mb-1">{education.title}</h5>

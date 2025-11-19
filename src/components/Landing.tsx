@@ -1,7 +1,7 @@
 
 import Image from "next/image"
 import Socials from "./Socials"
-import prisma from "../../../lib/prisma"
+import prisma from "../../lib/prisma"
 
 
 export default async function Landing() {

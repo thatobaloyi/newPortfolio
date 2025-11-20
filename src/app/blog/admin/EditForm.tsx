@@ -1,4 +1,4 @@
-'use client'; 
+'use client';
 import { useState } from 'react';
 import { updatePost } from "./actions" // Corrected import path
 import { useRouter } from 'next/navigation';
@@ -13,17 +13,23 @@ interface PostEditData {
   postImage: string | null;
   tags: string[];
   author: string;
-  publishedAt: Date; 
+  publishedAt: Date;
 }
 
 interface EditPostFormProps {
-    post: PostEditData;
-    onCancel: () => void;
+  post: PostEditData;
+  onCancel: () => void;
 }
 
 export function EditPostForm({ post, onCancel }: EditPostFormProps) {
   const router = useRouter();
 
+  const dateToDatetimeLocal = (date: Date): string => {
+    const dt = new Date(date);
+    const offsetMs = dt.getTimezoneOffset() * 60000;
+    const localTime = new Date(dt.getTime() - offsetMs);
+    return localTime.toISOString().slice(0, 16); // format: YYYY-MM-DDTHH:MM
+  };
   // State initialized with existing post data
   const [title, setTitle] = useState(post.title);
   const [slug, setSlug] = useState(post.slug);
@@ -34,12 +40,12 @@ export function EditPostForm({ post, onCancel }: EditPostFormProps) {
   const [tags, setTags] = useState(post.tags.join(', '));
   const [author, setAuthor] = useState(post.author);
   // Format Date object back to ISO string for date input field
-  const [publishedAt, setPublishedAt] = useState(post.publishedAt.toISOString().substring(0, 10)); 
+  const [publishedAt, setPublishedAt] = useState(dateToDatetimeLocal(post.publishedAt));
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
@@ -47,30 +53,30 @@ export function EditPostForm({ post, onCancel }: EditPostFormProps) {
 
     try {
       // Prepare the data object for update
-      const dataToUpdate = { 
+      const dataToUpdate = {
         id: post.id,
-        title, 
-        slug, 
+        title,
+        slug,
         content,
         summary: summary || null,
         postImage: postImage || null,
         author,
         // Convert comma-separated string to array
-        tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0), 
+        tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0),
         // Convert ISO date string to Date object
-        publishedAt: new Date(publishedAt), 
+        publishedAt: new Date(publishedAt),
       };
-      
+
       await updatePost(dataToUpdate);
 
       // If the slug changed, we need to redirect the user
       if (post.slug !== dataToUpdate.slug) {
-          router.push(`/blog/${dataToUpdate.slug}`);
+        router.push(`/blog/${dataToUpdate.slug}`);
       } else {
-          router.refresh(); // Refresh the current page to show new data
+        router.refresh(); // Refresh the current page to show new data
       }
       onCancel(); // Close the form
-      
+
     } catch (e) {
       console.error("Update error:", e);
       setError("Failed to update post. Please check the slug for uniqueness.");
@@ -82,7 +88,7 @@ export function EditPostForm({ post, onCancel }: EditPostFormProps) {
   return (
     <form onSubmit={handleSubmit} className="p-6 bg-white-50 border border-blue-200 rounded-lg shadow-xl mt-30 mb-30">
       <h3 className="text-2xl font-bold text-gray-800 mb-6 border-b pb-3 text-blue-700">Edit Post: {post.title}</h3>
-      
+
       {/* --- Core Content --- */}
       <div className="space-y-4 mb-6">
         {/* Title Input */}
@@ -95,7 +101,7 @@ export function EditPostForm({ post, onCancel }: EditPostFormProps) {
           disabled={isLoading}
           required
         />
-        
+
         {/* Slug Input - Warning if changed */}
         <input
           type="text"
@@ -107,7 +113,7 @@ export function EditPostForm({ post, onCancel }: EditPostFormProps) {
           required
         />
         {post.slug !== slug && <p className="text-red-500 text-sm">Warning: Changing the slug will change the post's URL.</p>}
-        
+
         {/* Summary Input */}
         <textarea
           placeholder="Summary (Optional short description)"
@@ -117,7 +123,7 @@ export function EditPostForm({ post, onCancel }: EditPostFormProps) {
           rows={2}
           disabled={isLoading}
         />
-        
+
         {/* Content Textarea */}
         <textarea
           placeholder="Main Content (Required)"
@@ -160,7 +166,7 @@ export function EditPostForm({ post, onCancel }: EditPostFormProps) {
           type="text"
           placeholder="Author Name (Required)"
           value={author}
-          
+
           className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"
           disabled={true}
           required
@@ -168,16 +174,16 @@ export function EditPostForm({ post, onCancel }: EditPostFormProps) {
 
         {/* Published At Date */}
         <div className="flex items-center space-x-2">
-            <label htmlFor="publishedAt" className="text-gray-600 min-w-[120px]">Published Date:</label>
-            <input
-              id="publishedAt"
-              type="date"
-              value={publishedAt}
-              onChange={(e) => setPublishedAt(e.target.value)}
-              className="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"
-              disabled={isLoading}
-              required
-            />
+          <label htmlFor="publishedAt" className="text-gray-600 min-w-[120px]">Published Date:</label>
+          <input
+            id="publishedAt"
+            type="datetime-local"
+            value={publishedAt}
+            onChange={(e) => setPublishedAt(e.target.value)}
+            className="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+            disabled={isLoading}
+            required
+          />
         </div>
       </div>
 
@@ -190,21 +196,21 @@ export function EditPostForm({ post, onCancel }: EditPostFormProps) {
 
       {/* Submit/Cancel Buttons */}
       <div className="flex justify-end space-x-4">
-        <button 
-            type="button" 
-            onClick={onCancel}
-            disabled={isLoading} 
-            className="px-4 py-3 font-semibold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition duration-300"
+        <button
+          type="button"
+          onClick={onCancel}
+          disabled={isLoading}
+          className="px-4 py-3 font-semibold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition duration-300"
         >
-            Cancel
+          Cancel
         </button>
 
-        <button 
-          type="submit" 
-          disabled={isLoading} 
+        <button
+          type="submit"
+          disabled={isLoading}
           className={`px-4 py-3 font-semibold text-white rounded-lg transition duration-300 ease-in-out shadow-md min-w-[120px]
-            ${isLoading 
-              ? 'bg-blue-400 cursor-not-allowed flex items-center justify-center' 
+            ${isLoading
+              ? 'bg-blue-400 cursor-not-allowed flex items-center justify-center'
               : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800'
             }`}
         >
@@ -216,7 +222,7 @@ export function EditPostForm({ post, onCancel }: EditPostFormProps) {
               </svg>
               Updating....
             </>
-          ) : "Save Changes" }
+          ) : "Save Changes"}
         </button>
       </div>
     </form>

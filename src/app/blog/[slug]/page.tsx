@@ -18,11 +18,11 @@ const formatDate = (date: Date) => date.toLocaleDateString('en-US', {
 });
 
 export default async function SinglePostPage({ params }: PostPageProps) {
-
+    const slugVal = params.slug;
     // Fetch the post based on the slug from the URL (Server Side)
     const post = await prisma.post.findUnique({
         where: {
-            slug: params.slug,
+            slug: slugVal,
         },
     });
 

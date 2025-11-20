@@ -3,12 +3,20 @@ import Link from 'next/link'; // Import Link for navigation
 import PageWrapper from '../../components/PageWrapper';
 import { PostForm } from './admin/PostForm';
 import prisma from '../../../lib/prisma';
-import { Post as PrismaPostType }  from "@prisma/client";
+import { Post as PrismaPostType } from "@prisma/client";
+import { RelativeTimeDisplay } from '@/components/RelativeTimeDisplay';
 
 async function page() {
 
+    const now = new Date(); 
     // Fetch posts from the database, ordered by creation date
+    // also fetches the posts that have peen published now or in the past.
     const posts = await prisma.post.findMany({
+        where: {
+            publishedAt: {
+                lte: now, // lte = Less Than or Equal to
+            },
+        },
         orderBy: { createdAt: 'desc' },
     });
 
@@ -24,7 +32,7 @@ async function page() {
             <main className='mt-30 max-w-5xl mx-auto px-4'>
                 <h1 className='text-4xl font-extrabold text-gray-900 mb-8'>Blog Posts</h1>
                 <Link href='/blog/admin'>
-                    <img className='mx-auto' src="https://cdn-icons-png.flaticon.com/128/12724/12724606.png" alt="admin" width={30}/>
+                    <img className='mx-auto' src="https://cdn-icons-png.flaticon.com/128/12724/12724606.png" alt="admin" width={30} />
                 </Link>
                 <br />
                 <h2 className="text-2xl font-semibold mt-10 mb-6 border-b pb-2 text-center text-gray-700">Current Posts ({posts.length})</h2>
@@ -33,20 +41,20 @@ async function page() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 m-5">
                     {posts?.map((post: PrismaPostType) => (
                         // The entire card is wrapped in a Link for navigation
-                        <Link 
-                            key={post.id} 
+                        <Link
+                            key={post.id}
                             // This uses the post's slug to create the dynamic path
-                            href={`/blog/${post.slug}`} 
+                            href={`/blog/${post.slug}`}
                             passHref
                         >
                             <div className="block h-full cursor-pointer p-6 border border-gray-200 bg-white rounded-xl shadow-lg 
                                             hover:shadow-2xl hover:border-blue-400 transition duration-300 transform hover:-translate-y-1">
-                                
+
                                 {/* Image Placeholder/Preview (Optional) */}
                                 {post.postImage ? (
-                                    <img 
-                                        src={post.postImage} 
-                                        alt={post.title} 
+                                    <img
+                                        src={post.postImage}
+                                        alt={post.title}
                                         className="h-32 w-full object-cover rounded-md mb-4"
                                     />
                                 ) : (
@@ -62,7 +70,9 @@ async function page() {
                                 <p className="text-xs text-gray-500 mb-3">
                                     By <span className='font-medium'>{post.author}</span> on {formatDate(post.publishedAt)}
                                 </p>
-                                
+
+                                <RelativeTimeDisplay date={post.publishedAt} />
+
                                 {/* Summary/Content Preview */}
                                 <p className="text-sm text-gray-600 line-clamp-3">
                                     {post.summary || post.content}

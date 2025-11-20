@@ -17,7 +17,13 @@ interface PostFormData {
 
 export function PostForm() {
   const {data: session, status} = useSession();
-
+  
+  const dateToDatetimeLocal = (date: Date): string => {
+    const dt = new Date(date);
+    const offsetMs = dt.getTimezoneOffset() * 60000;
+    const localTime = new Date(dt.getTime() - offsetMs);
+    return localTime.toISOString().slice(0, 16); // format: YYYY-MM-DDTHH:MM
+};
   const authorName = session?.user?.name || "";
   // State for all required and optional fields
   const [title, setTitle] = useState('');
@@ -26,8 +32,8 @@ export function PostForm() {
   const [summary, setSummary] = useState('');
   const [postImage, setPostImage] = useState('');
   const [tags, setTags] = useState('');
-  const [author, setAuthor] = useState(session?.user?.name);
-  const [publishedAt, setPublishedAt] = useState(new Date().toISOString().substring(0, 10)); // Default to today
+ 
+  const [publishedAt, setPublishedAt] = useState(dateToDatetimeLocal(new Date())); // Default to today
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -49,7 +55,7 @@ export function PostForm() {
         author: authorName,
         // Convert comma-separated string to array
         tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0), 
-        // Convert ISO date string to Date object
+        
         publishedAt: new Date(publishedAt), 
       };
       
@@ -63,7 +69,7 @@ export function PostForm() {
       setSummary('');
       setPostImage('');
       setTags('');
-      setPublishedAt(new Date().toISOString().substring(0, 10)); // Reset date to today
+      setPublishedAt(dateToDatetimeLocal(new Date()));
 
     } catch (e) {
       console.error("Submission error:", e);
@@ -169,7 +175,7 @@ export function PostForm() {
             <label htmlFor="publishedAt" className="text-gray-600 min-w-[120px]">Published Date:</label>
             <input
               id="publishedAt"
-              type="date"
+              type="datetime-local"
               value={publishedAt}
               onChange={(e) => setPublishedAt(e.target.value)}
               className="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"

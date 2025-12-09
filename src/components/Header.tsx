@@ -8,7 +8,7 @@ export default function Header() {
         <Link href="/" className="text-sm md:text-base font-bold flex items-center">Thato Baloyi</Link>
         <nav className="flex gap-2">
           <Link href="/">Home</Link>
-          <Link href="/about">About</Link>
+          {/* <Link href="/about">About</Link> */}
           <Link href="/blog">Blog</Link>
         </nav>
       </div>

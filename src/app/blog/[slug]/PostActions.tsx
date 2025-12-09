@@ -3,6 +3,7 @@
 import React from 'react';
 import { Post as PrismaPostType } from "@prisma/client";
 import { RelativeTimeDisplay } from '@/components/RelativeTimeDisplay';
+import Link from 'next/link';
 
 interface PostActionsProps {
   post: PrismaPostType;
@@ -20,6 +21,10 @@ export function PostActions({ post }: PostActionsProps) {
 
   return (
     <main className="max-w-4xl mx-auto py-12 px-4 bg-white rounded-xl shadow-2xl mt-30 mb-20">
+      
+      <Link href='/blog' className='bg-blue-600 hover:bg-blue-700 active:bg-blue-800 px-4 py-3 font-semibold text-white rounded-lg transition duration-300 ease-in-out shadow-md min-w-[120px]'>All Posts</Link>
+      <br />
+      <br />
 
       {/* Removed: Edit Button, making this a pure public viewing component. */}
 
@@ -64,6 +69,8 @@ export function PostActions({ post }: PostActionsProps) {
         </p>
         <p className="text-xs text-gray-400 mt-3">Slug: {post.slug}</p>
       </div>
+      <br />
+      <Link href='/blog' className='bg-blue-600 hover:bg-blue-700 active:bg-blue-800 px-4 py-3 font-semibold text-white rounded-lg transition duration-300 ease-in-out shadow-md min-w-[120px]'>All Posts</Link>
     </main>
   );
 }

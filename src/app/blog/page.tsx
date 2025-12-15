@@ -1,10 +1,10 @@
 import React from 'react';
 import Link from 'next/link'; // Import Link for navigation
 import PageWrapper from '../../components/PageWrapper';
-import { PostForm } from './admin/PostForm';
 import prisma from '../../../lib/prisma';
 import { Post as PrismaPostType } from "@prisma/client";
 import { RelativeTimeDisplay } from '@/components/RelativeTimeDisplay';
+import Image from 'next/image';
 
 async function page() {
 
@@ -32,7 +32,7 @@ async function page() {
             <main className='mt-30 max-w-5xl mx-auto px-4'>
                 <h1 className='text-4xl font-extrabold text-gray-900 mb-8'>Blog Posts</h1>
                 <Link href='/blog/admin'>
-                    <img className='mx-auto' src="https://cdn-icons-png.flaticon.com/128/12724/12724606.png" alt="admin" width={30} />
+                    <Image className='mx-auto' src="https://cdn-icons-png.flaticon.com/128/12724/12724606.png" alt="admin" width={30} height={0}/>
                 </Link>
                 <br />
                 <h2 className="text-2xl font-semibold mt-10 mb-6 border-b pb-2 text-center text-gray-700">Current Posts ({posts.length})</h2>
@@ -52,10 +52,12 @@ async function page() {
 
                                 {/* Image Placeholder/Preview (Optional) */}
                                 {post.postImage ? (
-                                    <img
+                                    <Image
                                         src={post.postImage}
                                         alt={post.title}
                                         className="h-32 w-full object-cover rounded-md mb-4"
+                                        width={100}
+                                        height={0}
                                     />
                                 ) : (
                                     <div className="h-32 w-full bg-gray-100 rounded-md mb-4 flex items-center justify-center text-gray-400 text-sm">

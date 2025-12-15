@@ -5,24 +5,17 @@ import { notFound } from 'next/navigation';
 import { PostActions } from './PostActions'; // Import the new Client Component
 
 interface PostPageProps {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
-// Helper function to format the date (kept on server side for efficiency)
-const formatDate = (date: Date) => date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-});
-
 export default async function SinglePostPage({ params }: PostPageProps) {
-    const slugVal = params.slug;
+    const {slug} = await params;
     // Fetch the post based on the slug from the URL (Server Side)
     const post = await prisma.post.findUnique({
         where: {
-            slug: slugVal,
+            slug,
         },
     });
 

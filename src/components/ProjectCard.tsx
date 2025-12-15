@@ -7,7 +7,7 @@ interface ProjectCardProps {
   language: string | null;
 }
 
-function ProjectCard({ name, description, html_url, language }: ProjectCardProps) {
+function ProjectCard({ name, description, language }: ProjectCardProps) {
   return (
     <div className="flex flex-col p-6 bg-gray-100 justify-center h-full items-center gap-5 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-200">
 

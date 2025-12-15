@@ -22,17 +22,17 @@ export default async function Landing() {
 
 
             {/* Name */}
-            <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center text-neutral-200">
                 {data[0].name}
             </h1>
 
             {/* Title/Role */}
-            <p className="text-xl md:text-2xl  mb-4 text-center">
+            <p className="text-xl md:text-2xl   mb-4 text-center text-neutral-200">
                 {data[0].position}
             </p>
 
             {/* Bio/Description */}
-            <p className="text-base  max-w-md text-center">
+            <p className="text-base  max-w-md text-center text-neutral-200">
                 {data[0].description}
             </p>
             <br />

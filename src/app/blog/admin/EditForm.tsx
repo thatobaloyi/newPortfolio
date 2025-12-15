@@ -38,7 +38,7 @@ export function EditPostForm({ post, onCancel }: EditPostFormProps) {
   const [postImage, setPostImage] = useState(post.postImage || '');
   // Convert tags array back to comma-separated string for input display
   const [tags, setTags] = useState(post.tags.join(', '));
-  const [author, setAuthor] = useState(post.author);
+  const author = post.author;
   // Format Date object back to ISO string for date input field
   const [publishedAt, setPublishedAt] = useState(dateToDatetimeLocal(post.publishedAt));
 
@@ -112,7 +112,7 @@ export function EditPostForm({ post, onCancel }: EditPostFormProps) {
           disabled={isLoading}
           required
         />
-        {post.slug !== slug && <p className="text-red-500 text-sm">Warning: Changing the slug will change the post's URL.</p>}
+        {post.slug !== slug && <p className="text-red-500 text-sm">Warning: Changing the slug will change the post&apos;s URL.</p>}
 
         {/* Summary Input */}
         <textarea

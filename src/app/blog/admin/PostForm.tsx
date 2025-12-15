@@ -4,19 +4,9 @@ import { createPost } from './actions'; // Import the Server Action
 import { useSession } from 'next-auth/react';
 
 // Define the complete set of data fields the form will collect
-interface PostFormData {
-  title: string;
-  slug: string;
-  content: string;
-  summary: string;
-  postImage: string;
-  tags: string; // Collecting as a comma-separated string
-  author: string ;
-  publishedAt: string; // Collecting as a date string
-}
 
 export function PostForm() {
-  const {data: session, status} = useSession();
+  const {data: session} = useSession();
   
   const dateToDatetimeLocal = (date: Date): string => {
     const dt = new Date(date);

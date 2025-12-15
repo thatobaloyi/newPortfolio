@@ -4,6 +4,7 @@ import React from 'react';
 import { Post as PrismaPostType } from "@prisma/client";
 import { RelativeTimeDisplay } from '@/components/RelativeTimeDisplay';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface PostActionsProps {
   post: PrismaPostType;
@@ -29,11 +30,15 @@ export function PostActions({ post }: PostActionsProps) {
       {/* Removed: Edit Button, making this a pure public viewing component. */}
 
       {/* Post Image (if available) */}
+  
       {post.postImage && (
-        <img
+        <Image
           src={post.postImage}
           alt={post.title}
-          className="w-full h-80 object-cover rounded-lg mb-6 shadow-md"
+          className="object-cover m-auto rounded-lg mb-6 shadow-md"
+          width={800}
+          quality={100}
+          height={100}
         />
       )}
 

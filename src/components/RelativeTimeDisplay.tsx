@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 
 interface RelativeTimeDisplayProps {
   date: Date | string;
@@ -59,7 +59,7 @@ const formatRelativeTime = (publishedAt: Date): string => {
 
 
 export const RelativeTimeDisplay: React.FC<RelativeTimeDisplayProps> = ({ date }) => {
-  const publishedAt = new Date(date);
+  const publishedAt = useMemo(() => new Date(date), [date]);
   
   // State to hold the current relative time string
   const [relativeTime, setRelativeTime] = useState(() => formatRelativeTime(publishedAt));
@@ -76,7 +76,7 @@ export const RelativeTimeDisplay: React.FC<RelativeTimeDisplayProps> = ({ date }
 
     // Cleanup function to clear the interval when the component unmounts
     return () => clearInterval(intervalId);
-  }, [date]); // Dependency on 'date' ensures recalculation if the prop changes
+  }, [publishedAt]); // Dependency on 'date' ensures recalculation if the prop changes
 
   return (
     <time dateTime={publishedAt.toISOString()} className="text-sm text-gray-500">

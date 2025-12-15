@@ -1,12 +1,12 @@
 // You would run this file separately (e.g., node hash_utility.js) to generate the hash.
 // NOTE: You would need to install bcryptjs if you don't have it already: npm install bcryptjs
 
-const bcrypt = require('bcryptjs');
+import { hash as _hash } from 'bcryptjs';
 
 const plaintextPassword = '';
 const saltRounds = 10;
 
-bcrypt.hash(plaintextPassword, saltRounds, (err, hash) => {
+_hash(plaintextPassword, saltRounds, (err, hash) => {
     if (err) {
         console.error("Error hashing password:", err);
         return;

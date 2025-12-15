@@ -16,7 +16,7 @@ interface AdminProtectedProps {
 
 export function AdminProtected({ posts }: AdminProtectedProps) {
     // Use the next-auth hook to get session status
-    const { data: session, status } = useSession();
+    const { status } = useSession();
     
     // Status can be 'loading', 'authenticated', or 'unauthenticated'
     const isAuthenticated = status === 'authenticated';

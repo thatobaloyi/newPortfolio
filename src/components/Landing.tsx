@@ -12,7 +12,7 @@ export default async function Landing() {
             
             <div className="relative w-40 h-40 rounded-full mb-8">
                 <Image
-                    src="https://media.licdn.com/dms/image/v2/D4D03AQHF5kgAU0Ki7A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1731797429204?e=1755734400&v=beta&t=hhOx7Wo_Jljc8RsmG0GnNI0j_9KctENe7jWZwe1vPbI"
+                    src="https://media.licdn.com/dms/image/v2/D4D03AQHF5kgAU0Ki7A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1731797429204?e=1767225600&v=beta&t=vHb-oCisQWHRdgcQ9atup-wJHwqImm5p0Qs39QEkWOM"
                     alt="Thato Baloyi Instagram Profile Picture"
                     layout="fill"
                     objectFit="cover"

@@ -20,6 +20,7 @@ export default async function Skills() {
           <p>No skills to display.</p>
         )}
       </div>
+      
     </div>
   )
 }

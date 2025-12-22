@@ -13,7 +13,7 @@ export default async function WorkExperience() {
   return (
   
     <div>
-      <h1>Work Expericence</h1>
+      <h1>Work Experience</h1>
       {data && data.length > 0 ? data.map((experience, index) => (
         <WorkExperienceCard key={index} workExperience={experience}/>
       )): "Work Experience Not Found"}

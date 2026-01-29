@@ -40,7 +40,7 @@ export default async function Landing() {
             <Socials />
 
 
-            <div className="flex justify-center gap-5">
+            <div className="flex flex-col md:flex-row  justify-center items-center gap-5">
                 <div className="mt-10">
                     <a
                         href={`mailto:${email}`}

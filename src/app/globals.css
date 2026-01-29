@@ -1,9 +1,20 @@
-@import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body{
-  background-color: #F9F9F9;
-  color: #363636;
+:root {
+  --background: #ffffff;
+  --text: #333333;
+  --primary: #0070f3;
+  --secondary: #666666;
+  --accent: #ff4500;
+  --muted: #f3f4f6;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
   text-align: justify;
 }
 
@@ -17,7 +28,7 @@ nav{
 
 hr{
   width: 50%;
-  color: #363636;
+  color: var(--text);
   margin: auto;
 }
 
@@ -34,9 +45,6 @@ h2{
   text-align: center;
   margin: 0.5em;
 }
-
-
-
 
 /* From Uiverse.io by mrhyddenn */ 
 .spinner {
@@ -176,11 +184,8 @@ h2{
   }
 }
 
-
-
-
 #landing{
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url("/images/landing.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("/images/landing.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }

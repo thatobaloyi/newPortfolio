@@ -70,9 +70,10 @@ model Landing {
 }
 
 model Skill {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  name  String @unique // Ensure skill names are unique
-  icon  String
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String @unique // Ensure skill names are unique
+  icon     String
+  category String
 }
 
 

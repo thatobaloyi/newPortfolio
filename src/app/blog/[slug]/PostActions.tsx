@@ -21,7 +21,7 @@ export function PostActions({ post }: PostActionsProps) {
   // Removed: const [isEditing, setIsEditing] = useState(false); and related logic.
 
   return (
-    <main className="max-w-4xl mx-auto py-12 px-4 bg-white rounded-xl shadow-2xl mt-30 mb-20">
+    <main className="max-w-4xl mx-auto py-12 px-4 bg-white rounded-xl shadow-2xl mt-40 mb-20">
       
       <Link href='/blog' className='bg-blue-600 hover:bg-blue-700 active:bg-blue-800 px-4 py-3 font-semibold text-white rounded-lg transition duration-300 ease-in-out shadow-md min-w-[120px]'>All Posts</Link>
       <br />

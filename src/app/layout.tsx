@@ -32,7 +32,6 @@ export default function RootLayout({
       >
         <NextAuthSessionProvider>
           <Header />
-          {/* <Landing/> */}
           {children}
         </NextAuthSessionProvider>
       </body>

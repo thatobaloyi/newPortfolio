@@ -30,7 +30,7 @@ async function page() {
     return (
         <PageWrapper>
             <main className='mt-30 max-w-5xl mx-auto px-4'>
-                <h1 className='text-4xl font-extrabold text-gray-900 mb-8'>Blog Posts</h1>
+                <h1 className='text-4xl font-extrabold text-gray-700 mb-8 mt-40'>Blog Posts</h1>
                 <Link href='/blog/admin'>
                     <Image className='mx-auto' src="https://cdn-icons-png.flaticon.com/128/12724/12724606.png" alt="admin" width={30} height={0}/>
                 </Link>

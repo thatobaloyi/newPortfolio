@@ -12,11 +12,11 @@ export default async function WorkExperience() {
  
   return (
   
-    <div>
-      <h1>Work Experience</h1>
+    <div className="bg-white p-8 rounded-lg shadow-md mb-8">
+      <h1 className="text-3xl font-bold mb-4 text-center">Work Experience</h1>
       {data && data.length > 0 ? data.map((experience, index) => (
         <WorkExperienceCard key={index} workExperience={experience}/>
-      )): "Work Experience Not Found"}
+      )): <p className="text-center text-secondary">Work Experience Not Found</p>}
     </div>
   )
 }

@@ -3,8 +3,11 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // Import specific icons you need
-import { faJs, faPython, faJava, faGitAlt, faReact, faNodeJs, faHtml5, faCss3Alt, faPhp, faGithub, faMicrosoft } from '@fortawesome/free-brands-svg-icons';
-import { faDatabase, faFileCode, faN } from '@fortawesome/free-solid-svg-icons';
+import { 
+  faJsSquare, faPython, faJava, faPhp, faReact, faNodeJs, faHtml5, faCss3Alt, 
+  faGitAlt, faGithub, faLinux, faWindows, faApple 
+} from '@fortawesome/free-brands-svg-icons';
+import { faDatabase, faMicrochip, faServer, faCode, faLeaf } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 interface SkillCardProps {
@@ -13,29 +16,43 @@ interface SkillCardProps {
 }
 
 const iconMap: { [key: string]: IconDefinition } = {
-  "fa-brands fa-js": faJs,
-  "fa-brands fa-python": faPython,
-  "fa-brands fa-java": faJava,
-  "fa-brands fa-git-alt": faGitAlt,
-  "fa-solid fa-database": faDatabase,
-  "fa-brands fa-react": faReact,
-  "fa-brands fa-node-js": faNodeJs,
-  "fa-solid fa-file-code": faFileCode,
-  "fa-solid fa-n": faN,
-  "fa-brands fa-html5": faHtml5,
-  "fa-brands fa-css3-alt": faCss3Alt,
-  "fa-brands fa-php": faPhp,
-  "github": faGithub,
-  "Microsoft": faMicrosoft,
+  // Programming
+  'faJava': faJava,
+  'faPython': faPython,
+  'faC': faCode, // Using faCode for C, as there's no specific faC
+  'faJsSquare': faJsSquare,
+  'faPhp': faPhp,
+  'faDatabase': faDatabase, // For SQL
+  'faMicrochip': faMicrochip, // For Assembly (x86)
+
+  // Frameworks/Web
+  'faReact': faReact,
+  'faNextjs': faJsSquare, // Using faJsSquare for Next.js, as there's no specific faNextjs
+  'faNodeJs': faNodeJs,
+  'faServer': faServer, // For Express.js
+  'faNestjs': faCode, // Using faCode for Nest.js, as there's no specific faNestjs
+  'faHtml5': faHtml5,
+  'faCss3Alt': faCss3Alt,
+
+  // Databases
+  'faLeaf': faLeaf, // For MongoDB (NoSQL)
+
+  // Tools
+  'faLinux': faLinux,
+  'faWindows': faWindows,
+  'faApple': faApple, // For macOS
+  'faGitAlt': faGitAlt,
+  'faGithub': faGithub,
+  'faCode': faCode, // For VS Code
 };
 
 export default function SkillCard({ name, icon }: SkillCardProps) {
   const IconComponent: IconDefinition | undefined = iconMap[icon];
 
   return (
-    <div className="flex flex-col items-center justify-center p-4 bg-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
-      {IconComponent && <FontAwesomeIcon icon={IconComponent} className="text-lg mb-2 text-gray-700" />}
-      <p className="text-lg font-medium text-gray-800">{name}</p>
+    <div className="flex flex-col items-center justify-center p-4 bg-muted rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+      {IconComponent && <FontAwesomeIcon icon={IconComponent} className="text-3xl mb-2 text-primary" />}
+      <p className="text-lg font-medium text-text text-center">{name}</p>
     </div>
   );
 }

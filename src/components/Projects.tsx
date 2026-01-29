@@ -22,7 +22,8 @@ async function getGithubProjects() {
         }
 
         const repos: GithubRepo[] = await response.json();
-        return { repos };
+        const filteredRepos = repos.filter((repo) => repo.name !== 'thatobaloyi')
+        return { repos: filteredRepos };
     } catch (error) {
         return { error: 'An unexpected error occurred.' };
     }
@@ -49,6 +50,7 @@ async function Projects() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {repos ? (
                         repos.map((project: GithubRepo) => (
+                            
                             <a key={project.id} href={project.html_url} className="transition-all duration-500" target="_blank">
                                 <ProjectCard name={project.name} description={project.description} html_url={project.html_url}
                                     language={project.language} />

@@ -18,8 +18,9 @@ const config: Config = {
         muted: 'var(--muted)',
       },
       fontFamily: {
-        sans: ['var(--font-geist-sans)'],
-        mono: ['var(--font-geist-mono)'],
+        sans: ['var(--font-manrope)'],
+        mono: ['var(--font-manrope)'],
+        display: ['var(--font-sora)'],
       },
     },
   },

@@ -46,13 +46,42 @@ const iconMap: { [key: string]: IconDefinition } = {
   'faCode': faCode, // For VS Code
 };
 
+const iconToneMap: { [key: string]: string } = {
+  faJava: "bg-orange-100 text-orange-700",
+  faPython: "bg-sky-100 text-sky-700",
+  faC: "bg-slate-100 text-slate-700",
+  faJsSquare: "bg-amber-100 text-amber-700",
+  faPhp: "bg-indigo-100 text-indigo-700",
+  faDatabase: "bg-cyan-100 text-cyan-700",
+  faMicrochip: "bg-zinc-100 text-zinc-700",
+  faReact: "bg-blue-100 text-blue-700",
+  faNextjs: "bg-neutral-100 text-neutral-700",
+  faNodeJs: "bg-emerald-100 text-emerald-700",
+  faServer: "bg-violet-100 text-violet-700",
+  faNestjs: "bg-rose-100 text-rose-700",
+  faHtml5: "bg-orange-100 text-orange-700",
+  faCss3Alt: "bg-blue-100 text-blue-700",
+  faLeaf: "bg-green-100 text-green-700",
+  faLinux: "bg-yellow-100 text-yellow-700",
+  faWindows: "bg-sky-100 text-sky-700",
+  faApple: "bg-slate-100 text-slate-700",
+  faGitAlt: "bg-orange-100 text-orange-700",
+  faGithub: "bg-neutral-100 text-neutral-700",
+  faCode: "bg-zinc-100 text-zinc-700",
+};
+
 export default function SkillCard({ name, icon }: SkillCardProps) {
   const IconComponent: IconDefinition | undefined = iconMap[icon];
+  const iconTone = iconToneMap[icon] ?? "bg-slate-100 text-slate-700";
 
   return (
-    <div className="flex flex-col items-center justify-center p-4 bg-muted rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
-      {IconComponent && <FontAwesomeIcon icon={IconComponent} className="text-3xl mb-2 text-primary" />}
-      <p className="text-lg font-medium text-text text-center">{name}</p>
+    <div className="feature-card flex min-h-28 flex-col items-center justify-center p-4 text-center">
+      {IconComponent && (
+        <span className={`mb-3 inline-flex h-11 w-11 items-center justify-center rounded-full ring-1 ring-black/5 ${iconTone}`}>
+          <FontAwesomeIcon icon={IconComponent} className="text-xl" />
+        </span>
+      )}
+      <p className="text-sm font-semibold tracking-tight text-foreground md:text-base">{name}</p>
     </div>
   );
 }

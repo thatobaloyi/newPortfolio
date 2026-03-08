@@ -8,9 +8,16 @@ export default function Socials() {
     // get this list of links from the database?
     const data = ["https://www.youtube.com/@teamesb03", "https://github.com/thatobaloyi", "https://www.linkedin.com/in/thato-baloyi/", "https://www.instagram.com/teamesb/", "https://www.twitch.tv/teamesb03"]
     return (
-        <div className="flex gap-2 justify-center">
+        <div className="flex flex-wrap justify-center gap-3">
             {data.map((link) => (
-                <SocialIcon key={link} url={link} style={{ height: 30, width: 30 }} bgColor="#363636" className="cursor-pointer transition-all duration-300 hover:p-5" />
+                <SocialIcon
+                    key={link}
+                    url={link}
+                    style={{ height: 34, width: 34 }}
+                    bgColor="#0f172a"
+                    fgColor="#f8fafc"
+                    className="cursor-pointer rounded-md transition duration-200 hover:opacity-85"
+                />
             ))}
         </div>
     )

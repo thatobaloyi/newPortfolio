@@ -6,66 +6,69 @@ import prisma from "../../lib/prisma"
 
 export default async function Landing() {
     const data = await prisma.landing.findMany()
+    const profile = data[0]
+    const shortBio = (profile?.description ?? "I design and build software experiences that are practical, elegant, and performance-focused.")
+        .split(".")
+        .slice(0, 2)
+        .join(".")
+        .trim() + "."
     const email = 'thato2313321@gmail.com'
     return (
-        <div className="min-h-screen w-full pt-40 flex flex-col items-center justify-center p-6 pt-30" id="landing">
-            
-            <div className="relative w-40 h-40 rounded-full mb-8">
-                <Image
-                    src="https://media.licdn.com/dms/image/v2/D4D03AQHF5kgAU0Ki7A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1731797429204?e=1771459200&v=beta&t=-4_ZEzfWVJrNpZk-QKe-vuYfBej3vGg7GWUeaeSpoDw"
-                    alt="Thato Baloyi Instagram Profile Picture"
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-full border-4 border-white/20"
-                />
-            </div>
+        <section className="relative px-4 pb-10 pt-28 md:pt-32">
+            <div className="panel mx-auto grid max-w-6xl gap-8 px-6 py-10 md:grid-cols-[1.3fr_0.9fr] md:items-center md:px-10 md:py-14">
+                <div>
+                    <p className="eyebrow">Software Developer</p>
+                    <h1 className="mb-2 max-w-2xl text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+                        {profile?.name ?? "Thato Baloyi"}
+                    </h1>
 
+                    <p className="mb-4 text-lg text-muted-foreground md:text-xl">
+                        {profile?.position ?? "Software Developer"}
+                    </p>
 
-            {/* Name */}
-            <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center text-white/70">
-                {data[0].name}
-            </h1>
+                    <p className="mb-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                        {shortBio}
+                    </p>
 
-            {/* Title/Role */}
-            <p className="text-xl md:text-2xl mb-8 text-center text-white/70">
-                {data[0].position}
-            </p>
-
-            {/* Bio/Description */}
-            <p className="text-lg max-w-xl text-white/70 text-center">
-                {data[0].description}
-            </p>
-            <br />
-
-            <Socials />
-
-
-            <div className="flex flex-col md:flex-row  justify-center items-center gap-5">
-                <div className="mt-10">
+                    <div className="mb-6 flex flex-wrap items-center justify-center gap-3">
                     <a
                         href={`mailto:${email}`}
-                        className="px-6 py-3 text-lg font-semibold rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors shadow-lg"
-                        aria-label={`Get in touch with ${data[0].name} via email`}
+                        className="btn-primary inline-flex h-9 items-center px-4 py-2 text-sm font-medium"
+                        aria-label={`Get in touch with ${profile?.name ?? "Thato Baloyi"} via email`}
                     >
-                        📧 Get in Touch
+                        Get In Touch
                     </a>
-                </div>
 
-                <div className="mt-10">
                     <a
                         href='/files/resume.pdf'
-                        className="px-6 py-3 text-lg font-semibold rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors shadow-lg"
+                        className="btn-outline inline-flex h-9 items-center px-4 py-2 text-sm font-medium"
                         target="_blank"
-                        aria-label={`Get in touch with ${data[0].name} via email`}
+                        rel="noopener noreferrer"
+                        aria-label={`Open ${profile?.name ?? "Thato Baloyi"} resume in a new tab`}
                     >
-                        📄 Resume
+                        View Resume
                     </a>
+                    </div>
+
+                    <Socials />
+                </div>
+
+                <div className="relative mx-auto w-full max-w-xs md:max-w-sm">
+                    <div className="relative rounded-[2rem] border border-border/35 bg-white p-6 shadow-sm">
+                        <div className="relative mx-auto h-44 w-44 overflow-hidden rounded-full border border-border/40 md:h-52 md:w-52">
+                            <Image
+                                src="https://www.useaxisapp.com/api/assets/5f7c1f5f-0184-4bec-ae11-5b206c85c91b/founder"
+                                alt="Thato Baloyi Instagram Profile Picture"
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
+                        <p className="mt-5 text-center text-sm text-muted-foreground">
+                            Full-stack developer focused on building practical, reliable products with strong backend architecture.
+                        </p>
+                    </div>
                 </div>
             </div>
-
-            <Image src="https://cdn-icons-png.flaticon.com/128/15712/15712478.png" alt="" width={60} height={60} className="m-10" />
-            {/* <button>Resume</button> */}
-
-        </div>
+        </section>
     )
 }

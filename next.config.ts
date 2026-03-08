@@ -27,6 +27,18 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
         port: "",
         pathname: "/**"
+      },
+      {
+        protocol: "https",
+        hostname: "images.weserv.nl",
+        port: "",
+        pathname: "/**"
+      },
+      {
+        protocol: "https",
+        hostname: "www.useaxisapp.com",
+        port: "",
+        pathname: "/**"
       }
     ]
   }

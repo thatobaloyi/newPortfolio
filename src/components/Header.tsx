@@ -3,14 +3,15 @@ import Link from "next/link"
 
 export default function Header() {
   return (
-    <header className="fixed w-screen left-0 top-0 m-auto z-10">
-      <div className="flex shadow justify-between mx-auto max-w-5xl mt-5 px-5 rounded-full bg-white/30 backdrop-blur-sm">
-        <Link href="/" className="text-sm md:text-base font-bold flex items-center text-black/60">Thato Baloyi</Link>
-        <nav className="flex gap-4 items-center">
-          <Link href="/" className="text-black/60  hover:text-primary transition-colors">Home</Link>
-          {/* <Link href="/about" className="text-secondary hover:text-primary transition-colors">About</Link> */}
-          <Link href="/blog" className="text-black/60 hover:text-primary transition-colors">Blog</Link>
-          <Link href="/contact" className="text-black/60 hover:text-primary transition-colors">Contact</Link>
+    <header className="fixed left-0 top-0 z-50 w-full px-4 pt-4">
+      <div className="mx-auto flex w-full max-w-5xl items-center justify-between rounded-full border border-border/30 bg-white/80 px-4 py-3 shadow-[0_14px_36px_rgba(15,23,42,0.12)] backdrop-blur-md md:px-6">
+        <Link href="/" className="flex items-center gap-2 text-sm font-semibold text-foreground md:text-base">
+          Thato Baloyi
+        </Link>
+        <nav className="flex items-center gap-1 text-sm md:gap-2 md:text-sm">
+          <Link href="/" className="rounded-full px-3 py-1.5 text-muted-foreground transition hover:bg-black/5 hover:text-foreground">Home</Link>
+          <Link href="/blog" className="rounded-full px-3 py-1.5 text-muted-foreground transition hover:bg-black/5 hover:text-foreground">Blog</Link>
+          <Link href="/contact" className="rounded-full px-3 py-1.5 text-muted-foreground transition hover:bg-black/5 hover:text-foreground">Contact</Link>
         </nav>
       </div>
     </header>

@@ -21,61 +21,65 @@ export function PostActions({ post }: PostActionsProps) {
   // Removed: const [isEditing, setIsEditing] = useState(false); and related logic.
 
   return (
-    <main className="max-w-4xl mx-auto py-12 px-4 bg-white rounded-xl shadow-2xl mt-40 mb-20">
-      
-      <Link href='/blog' className='bg-blue-600 hover:bg-blue-700 active:bg-blue-800 px-4 py-3 font-semibold text-white rounded-lg transition duration-300 ease-in-out shadow-md min-w-[120px]'>All Posts</Link>
-      <br />
-      <br />
+    <main className="mx-auto mt-20 mb-16 max-w-4xl px-4 md:mt-24">
+      <article className="panel p-6 md:p-8">
+        <Link
+          href='/blog'
+          className='inline-flex items-center gap-2 text-sm font-medium text-muted-foreground underline-offset-4 hover:text-foreground hover:underline'
+        >
+          <span aria-hidden>←</span>
+          All Posts
+        </Link>
 
-      {/* Removed: Edit Button, making this a pure public viewing component. */}
+        <header className="mt-6 border-b border-border/50 pb-6">
+          <h1 className="text-3xl font-semibold leading-tight tracking-tight text-foreground md:text-4xl">{post.title}</h1>
+          <p className="mt-3 text-xs uppercase tracking-[0.12em] text-muted-foreground">
+            {post.author} • {formatDate(post.publishedAt)}
+          </p>
+          <div className="mt-1">
+            <RelativeTimeDisplay date={post.publishedAt} />
+          </div>
+        </header>
 
-      {/* Post Image (if available) */}
-  
-      {post.postImage && (
-        <Image
-          src={post.postImage}
-          alt={post.title}
-          className="object-cover m-auto rounded-lg mb-6 shadow-md"
-          width={800}
-          quality={100}
-          height={100}
-        />
-      )}
+        {post.postImage && (
+          <Image
+            src={post.postImage}
+            alt={post.title}
+            className="my-6 h-auto w-full rounded-xl object-cover"
+            width={1200}
+            quality={100}
+            height={675}
+          />
+        )}
 
-      {/* Header */}
-      <h1 className="text-5xl font-extrabold text-gray-900 mb-4 leading-tight">{post.title}</h1>
-      <div className="text-lg text-gray-500 mb-8 border-b pb-4">
-        By <span className="font-semibold text-blue-600">{post.author}</span> on {formatDate(post.publishedAt)}
-        <br />
-        <RelativeTimeDisplay date={post.publishedAt} />
-      </div>
-
-
-      {/* Content */}
-      <article className="prose prose-lg max-w-none text-gray-800">
+        <section className="max-w-none text-[1.02rem] leading-8 text-foreground [&_a]:underline [&_a]:underline-offset-4 [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-4 [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-semibold [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-semibold [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-6">
         {post.summary && (
-          <p className="lead text-2xl italic font-serif text-gray-700 mb-6 border-l-4 border-blue-200 pl-4">
+          <p className="mb-6 rounded-r-lg border-l-2 border-border bg-muted/60 px-4 py-3 text-lg italic text-muted-foreground">
             {post.summary}
           </p>
         )}
 
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
-      </article>
+        </section>
 
-      {/* Tags and Metadata */}
-      <div className="mt-10 pt-6 border-t border-gray-200">
-        <p className="text-md text-gray-600">
-          <span className="font-bold">Tags:</span>
-          {post.tags.map((tag, index) => (
-            <span key={index} className="inline-block bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full ml-1">
-              {tag}
-            </span>
-          ))}
-        </p>
-        <p className="text-xs text-gray-400 mt-3">Slug: {post.slug}</p>
-      </div>
-      <br />
-      <Link href='/blog' className='bg-blue-600 hover:bg-blue-700 active:bg-blue-800 px-4 py-3 font-semibold text-white rounded-lg transition duration-300 ease-in-out shadow-md min-w-[120px]'>All Posts</Link>
+        <footer className="mt-10 border-t border-border/50 pt-6">
+          <div className="mb-4 flex flex-wrap gap-2">
+            {post.tags.map((tag, index) => (
+              <span key={index} className="rounded-full bg-muted px-2.5 py-1 text-xs text-foreground">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <p className="text-xs text-muted-foreground">Slug: {post.slug}</p>
+          <Link
+            href='/blog'
+            className='mt-6 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground underline-offset-4 hover:text-foreground hover:underline'
+          >
+            <span aria-hidden>←</span>
+            All Posts
+          </Link>
+        </footer>
+      </article>
     </main>
   );
 }

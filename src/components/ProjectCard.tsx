@@ -3,27 +3,31 @@ import Image from "next/image"
 interface ProjectCardProps {
   name: string;
   description: string | null;
-  html_url: string;
   language: string | null;
 }
 
 function ProjectCard({ name, description, language }: ProjectCardProps) {
   return (
-    <div className="flex flex-col p-6 bg-gray-100 justify-center h-full items-center gap-5 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-200">
-
-      <Image src={`/images/${name}.png`} alt="" width={500} height={500}
-        className="rounded-md mb-4" />
-      {/* Name, with URL Link */}
-      <h5 className="text-lg font-medium text-gray-800">
-       {name}
-      </h5>
-
-      {/* Description */}
-      <p>{description || 'No Description Provided.'}</p>
-
-      {/* Language */}
-      {language && <p>Primary Language: <span className="bg-blue-200 text-gray-800 text-xs px-3 py-1 cursor-pointer rounded-full hover:bg-blue-300 transition-colors duration-200">{language}</span></p>}
-    </div>
+    <article className="feature-card h-full overflow-hidden p-4 md:p-5">
+      <div className="relative mb-4 h-44 overflow-hidden rounded-xl bg-muted">
+        <Image
+          src={`/images/${name}.png`}
+          alt={`${name} preview`}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+      </div>
+      <h3 className="mb-2 text-lg font-semibold capitalize tracking-tight text-foreground">
+        {name}
+      </h3>
+      <p className="mb-4 line-clamp-3 text-sm text-muted-foreground md:text-base">{description || 'No description provided.'}</p>
+      {language && (
+        <p className="mt-auto text-xs uppercase tracking-[0.12em] text-muted-foreground">
+          Primary stack <span className="ml-2 rounded-full bg-slate-900 px-2.5 py-1 text-white">{language}</span>
+        </p>
+      )}
+    </article>
   )
 }
 

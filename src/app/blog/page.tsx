@@ -29,69 +29,73 @@ async function page() {
 
     return (
         <PageWrapper>
-            <main className='mt-30 max-w-5xl mx-auto px-4'>
-                <h1 className='text-4xl font-extrabold text-gray-700 mb-8 mt-40'>Blog Posts</h1>
-                <Link href='/blog/admin'>
-                    <Image className='mx-auto' src="https://cdn-icons-png.flaticon.com/128/12724/12724606.png" alt="admin" width={30} height={0}/>
-                </Link>
-                <br />
-                <h2 className="text-2xl font-semibold mt-10 mb-6 border-b pb-2 text-center text-gray-700">Current Posts ({posts.length})</h2>
+            <main className='mx-auto mt-20 max-w-6xl px-4 pb-10 md:mt-24'>
+                <section className="panel mb-8 p-6 md:p-8">
+                    <p className="eyebrow">Writing</p>
+                    <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                        <div>
+                            <h1 className='text-3xl font-semibold tracking-tight text-foreground md:text-4xl'>
+                                Blog Posts
+                            </h1>
+        
+                        </div>
+                        <Link
+                            href='/blog/admin'
+                            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+                        >
+                            <Image src="https://cdn-icons-png.flaticon.com/128/12724/12724606.png" alt="admin" width={18} height={18} />
+                            Admin
+                        </Link>
+                    </div>
+                </section>
 
-                {/* Post Grid (Displays as Cards) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 m-5">
+                <section>
+                    <p className="mb-4 text-sm text-muted-foreground">{posts.length} published post{posts.length === 1 ? '' : 's'}</p>
+                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
                     {posts?.map((post: PrismaPostType) => (
-                        // The entire card is wrapped in a Link for navigation
                         <Link
                             key={post.id}
-                            // This uses the post's slug to create the dynamic path
                             href={`/blog/${post.slug}`}
-                            passHref
+                            className="feature-card h-full p-4 md:p-5"
                         >
-                            <div className="block h-full cursor-pointer p-6 border border-gray-200 bg-white rounded-xl shadow-lg 
-                                            hover:shadow-2xl hover:border-blue-400 transition duration-300 transform hover:-translate-y-1">
-
-                                {/* Image Placeholder/Preview (Optional) */}
+                            <article className="h-full">
                                 {post.postImage ? (
                                     <Image
                                         src={post.postImage}
                                         alt={post.title}
-                                        className="h-32 w-full object-cover rounded-md mb-4"
-                                        width={100}
-                                        height={0}
+                                        className="mb-4 h-40 w-full rounded-xl object-cover"
+                                        width={640}
+                                        height={280}
                                     />
                                 ) : (
-                                    <div className="h-32 w-full bg-gray-100 rounded-md mb-4 flex items-center justify-center text-gray-400 text-sm">
+                                    <div className="mb-4 flex h-40 w-full items-center justify-center rounded-xl bg-muted text-sm text-muted-foreground">
                                         No Image
                                     </div>
                                 )}
 
-                                {/* Title */}
-                                <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2">{post.title}</h3>
+                                <h3 className="mb-2 line-clamp-2 text-xl font-semibold tracking-tight text-foreground">{post.title}</h3>
 
-                                {/* Metadata */}
-                                <p className="text-xs text-gray-500 mb-3">
-                                    By <span className='font-medium'>{post.author}</span> on {formatDate(post.publishedAt)}
+                                <p className="mb-1 text-xs uppercase tracking-[0.12em] text-muted-foreground">
+                                    {post.author} • {formatDate(post.publishedAt)}
                                 </p>
-
                                 <RelativeTimeDisplay date={post.publishedAt} />
 
-                                {/* Summary/Content Preview */}
-                                <p className="text-sm text-gray-600 line-clamp-3">
+                                <p className="mt-3 line-clamp-3 text-sm text-muted-foreground">
                                     {post.summary || post.content}
                                 </p>
 
-                                {/* Tags */}
-                                <div className='mt-3'>
+                                <div className='mt-4 flex flex-wrap gap-2'>
                                     {post.tags.slice(0, 3).map((tag, index) => (
-                                        <span key={index} className="inline-block bg-blue-100 text-blue-600 text-xs px-2 py-0.5 rounded-full mr-2">
+                                        <span key={index} className="rounded-full bg-muted px-2.5 py-1 text-xs text-foreground">
                                             {tag}
                                         </span>
                                     ))}
                                 </div>
-                            </div>
+                            </article>
                         </Link>
                     ))}
-                </div>
+                    </div>
+                </section>
             </main>
         </PageWrapper>
     )

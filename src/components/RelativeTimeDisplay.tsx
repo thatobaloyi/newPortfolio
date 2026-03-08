@@ -79,7 +79,7 @@ export const RelativeTimeDisplay: React.FC<RelativeTimeDisplayProps> = ({ date }
   }, [publishedAt]); // Dependency on 'date' ensures recalculation if the prop changes
 
   return (
-    <time dateTime={publishedAt.toISOString()} className="text-sm text-gray-500">
+    <time dateTime={publishedAt.toISOString()} className="text-sm text-muted-foreground">
       {relativeTime}
     </time>
   );

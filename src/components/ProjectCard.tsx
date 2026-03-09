@@ -4,14 +4,17 @@ interface ProjectCardProps {
   name: string;
   description: string | null;
   language: string | null;
+  imageUrl?: string | null;
 }
 
-function ProjectCard({ name, description, language }: ProjectCardProps) {
+function ProjectCard({ name, description, language, imageUrl }: ProjectCardProps) {
+  const projectImage = imageUrl?.trim() ? imageUrl : "/images/default-image.jpg";
+
   return (
     <article className="feature-card h-full overflow-hidden p-4 md:p-5">
       <div className="relative mb-4 h-44 overflow-hidden rounded-xl bg-muted">
         <Image
-          src={`/images/${name}.png`}
+          src={projectImage}
           alt={`${name} preview`}
           fill
           className="object-cover"

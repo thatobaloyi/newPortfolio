@@ -39,6 +39,12 @@ const nextConfig: NextConfig = {
         hostname: "www.useaxisapp.com",
         port: "",
         pathname: "/**"
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3000",
+        pathname: "/**"
       }
     ]
   }
